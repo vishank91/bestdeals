@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 const nodemailer = require("nodemailer")
 const jwt = require("jsonwebtoken")
 
-const client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
+// const client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 
 var transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -189,19 +189,19 @@ async function forgetPassword1(req, res) {
                     console.log(error)
             })
 
-            client.messages
-                .create({
-                    body: `
-                            Hello ${data.name}
-                            OTP for Password Reset is ${otp}
-                            Never Share OTP With Anyone
-                            Team : BestDeals
-                        `,
-                    to: `+91${data.phone}`, // Text your number
-                    from: '+12569523830', // From a valid Twilio number
-                })
-                .then((message) => {});
-            res.send({ result: "Done", message: "OTP Sent on Registered Email Id" })
+            // client.messages
+            //     .create({
+            //         body: `
+            //                 Hello ${data.name}
+            //                 OTP for Password Reset is ${otp}
+            //                 Never Share OTP With Anyone
+            //                 Team : BestDeals
+            //             `,
+            //         to: `+91${data.phone}`, // Text your number
+            //         from: '+12569523830', // From a valid Twilio number
+            //     })
+            //     .then((message) => {});
+            // res.send({ result: "Done", message: "OTP Sent on Registered Email Id" })
         }
         else
             res.status(401).send({ result: "Fail", message: "Username is Invalid" })
